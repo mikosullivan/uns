@@ -20,6 +20,8 @@ It's clear that it's within the `idocs.com` domain, and presumably has
 something to do with color. It's easily distinguished from, say,
 `github.com/foo/color`, which might be a similar but distinct resource.
 
+## Format
+
 A UNS consists of a domain name and path. It should not include queries (i.e.
 a question mark followed by a string). Shorter is better, so avoid including
 `www.` The path should not include tildes (`~`), because that character is used
@@ -27,11 +29,11 @@ in the file name version of the UNS.
 
 So, using the example above, a UNS could be expressed in any of three ways:
 
-+---------------------------------------+
-| namespace  | idocs.com/color          |
-| URI        | https://idocs.com/color  |
-| file name  | idocs.com~color          |
-+---------------------------------------+
+| format    | example                 |
+|-----------|-------------------------|
+| namespace | idocs.com/color         |
+| URI       | https://idocs.com/color |
+| file name | idocs.com~color         |
 
 As long as the naming rules are followed, the UNS can be losslessly converted
 between any of the three formats.
