@@ -15,10 +15,54 @@ UNS provides a standard format for assigning namespaces using just the domain
 name and path of a URI. Those namespaces can be used in hash keys, file names,
 and other settings.
 
-Consider, for example: `idocs.com/color`. That's a simple, readable string.
-It's clear that it's within the `idocs.com` domain, and presumably has
-something to do with color. It's easily distinguished from, say,
-`github.com/foo/color`, which might be a similar but distinct resource.
+## Example
+
+Configuration files are notorious for growing in complexity as features are
+added and third-party modules are developed. Namespace collisions can become a
+problem when multiple third-party modules address similar issues.
+
+Consider a settings file for a program that allows for thrid party add-ons.
+Without any add-ons, a configuration file might look something like this:
+
+    {
+        "direction": 1.023,
+        "moment": "delta"
+    }
+
+Now suppose that a third party add-on is able to add color features to the
+application. It might be reasonable to add a setting like this:
+
+    {
+        "direction": 1.023,
+        "moment": "delta",
+        "color": "red"
+    }
+
+The problem there is that a single add-on has taken control of the `color`
+setting. That may or not be done with coordination with other add-ons or
+with the controlling authority of the program. Multiple add-ons, not written in
+coordination with others, might have namespace collisions over that setting.
+
+UNS provides a simple, intuitive technique for avoiding namespace collisions.
+Using the existing URI infrastructure, a UNS composed of just the domain name and
+a path can unambiguously define a namespace without any coordination with
+any other development efforts:
+
+    {
+        "direction": 1.023,
+        "moment": "delta",
+        "idocs.com/color": "red"
+    }
+
+If another add-on also contributes to some kind of color feature, it can be
+easily added without any namespace collisions:
+
+    {
+        "direction": 1.023,
+        "moment": "delta",
+        "idocs.com/color": "red",
+        "foo.com/color": {"level":true}
+    }
 
 ## Format
 
